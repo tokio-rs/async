@@ -1,0 +1,22 @@
+[package]
+name = "pin-convert"
+# When releasing to crates.io:
+# - Remove path dependencies
+# - Update html_root_url.
+# - Update doc url
+#   - Cargo.toml
+#   - README.md
+# - Update CHANGELOG.md.
+# - Create "v0.1.x" git tag.
+version = "0.1.0"
+edition = "2018"
+authors = ["Carl Lerche <me@carllerche.com>"]
+readme = "README.md"
+documentation = "https://docs.rs/pin-convert/0.1.0/pin-convert"
+homepage = "https://github.com/carllerche/pin-convert"
+license = "MIT"
+description = """
+Traits for converting to `Pin` variants.
+"""
+
+[dependencies]
