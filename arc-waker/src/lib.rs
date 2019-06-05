@@ -6,7 +6,7 @@ use std::mem;
 use std::task::{RawWaker, RawWakerVTable, Waker};
 
 /// Wake a pending task
-pub trait Wake: Sized {
+pub trait Wake: Send + Sync + Sized {
     /// Wake up the task associated with this `Wake` value.
     fn wake(self: Arc<Self>) {
         self.wake_by_ref();
