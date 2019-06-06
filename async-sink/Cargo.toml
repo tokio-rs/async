@@ -1,0 +1,7 @@
+[package]
+name = "async-sink"
+version = "0.1.0"
+authors = ["Carl Lerche <me@carllerche.com>"]
+edition = "2018"
+
+[dependencies]
