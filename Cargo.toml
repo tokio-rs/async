@@ -2,5 +2,6 @@
 
 members = [
   "arc-waker",
+  "async-util",
   "pin-convert"
 ]
