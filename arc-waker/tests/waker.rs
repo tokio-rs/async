@@ -10,8 +10,8 @@ struct MyWaker {
 }
 
 impl Wake for MyWaker {
-    fn wake_by_ref(&self) {
-        self.woke.store(true, Relaxed);
+    fn wake_by_ref(me: &Arc<Self>) {
+        me.woke.store(true, Relaxed);
     }
 }
 
@@ -22,7 +22,7 @@ fn waker() -> Arc<MyWaker> {
 #[test]
 fn ref_inc_dec() {
     let my_waker = waker();
-    let waker = my_waker.clone().into_waker();
+    let waker = arc_waker::waker(my_waker.clone());
 
     assert_eq!(2, Arc::strong_count(&my_waker));
 
@@ -42,7 +42,7 @@ fn ref_inc_dec() {
 #[test]
 fn wake() {
     let my_waker = waker();
-    let waker = my_waker.clone().into_waker();
+    let waker = arc_waker::waker(my_waker.clone());
 
     waker.wake();
     assert!(my_waker.woke.load(Relaxed));
@@ -51,7 +51,7 @@ fn wake() {
 #[test]
 fn wake_by_ref() {
     let my_waker = waker();
-    let waker = my_waker.clone().into_waker();
+    let waker = arc_waker::waker(my_waker.clone());
 
     waker.wake_by_ref();
     assert!(my_waker.woke.load(Relaxed));
