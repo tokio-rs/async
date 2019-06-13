@@ -10,8 +10,8 @@ struct MyWaker {
 }
 
 impl Wake for MyWaker {
-    fn wake_by_ref(&self) {
-        self.woke.store(true, Relaxed);
+    fn wake_by_ref(me: &Arc<Self>) {
+        me.woke.store(true, Relaxed);
     }
 }
 

@@ -31,7 +31,7 @@ unsafe fn wake<T: Wake>(raw: *const ()) {
 
 pub(crate) unsafe fn wake_by_ref<T: Wake>(raw: *const ()) {
     let wake = Arc::from_raw(raw as *const T);
-    wake.wake_by_ref();
+    T::wake_by_ref(&wake);
 
     mem::forget(wake);
 }
